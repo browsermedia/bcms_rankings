@@ -1,0 +1,2 @@
+<%= f.cms_text_field :rank, :instructions=>"Rank should be a number between 1 and 5." %>
+<%= f.cms_drop_down :page_id, Page.all(:order => "path").map{|p| ["#{p.path} (#{p.name})", p.id]}%>

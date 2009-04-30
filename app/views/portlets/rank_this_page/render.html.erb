@@ -1,0 +1,15 @@
+<% if @page %>
+    Average rank is <%= @average_rank %> out of <%= @rankings.size %> total.
+    <h3>Rank this Page</h3>
+    <p>Please rank the quality of this page, with #1 being the worst, and #5 the best.</p>
+    <% form_for @page_ranking do |f| %>
+        <%= f.hidden_field :page_id %>
+        <% (1..5).each do |count| %>
+            <%= count %><%= f.radio_button :rank, count %>
+        <% end  %>
+        <%= f.submit "Rate It!" %>
+
+    <% end %>
+<% else %>
+    This portlet must be placed on a page in order to view it.
+<% end %>
