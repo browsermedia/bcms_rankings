@@ -1,0 +1,576 @@
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/action_view/base.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_record/base.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_record/connection_adapters/abstract/schema_statements.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_record/errors.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_support/cache/file_store.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/hash.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/integer.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/nil.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/string.rb
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/action_view/base.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_record/base.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_record/connection_adapters/abstract/schema_statements.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_record/errors.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/active_support/cache/file_store.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/hash.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/integer.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/nil.rb
+~~ Loading extensions from /usr/local/lib/ruby/gems/1.8/gems/browsercms-3.0.0/lib/cms/extensions/string.rb
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (37.2ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (5.9ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20080815014337)
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(40), `first_name` varchar(40), `last_name` varchar(40), `email` varchar(40), `crypted_password` varchar(40), `salt` varchar(40), `created_at` datetime, `updated_at` datetime, `expires_at` datetime, `remember_token` varchar(40), `remember_token_expires_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (6.1ms)[0m   [0mCREATE UNIQUE INDEX `index_users_on_login` ON `users` (`login`)[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080815014337')[0m
+Migrating to CreateDynamicViews (20080815014733)
+  [4;35;1mSQL (1.5ms)[0m   [0mCREATE TABLE `dynamic_views` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `lock_version` int(11) DEFAULT 0, `type` varchar(255), `name` varchar(255), `format` varchar(255), `handler` varchar(255), `body` text, `created_at` datetime, `updated_at` datetime, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `created_by_id` int(11), `updated_by_id` int(11)) [0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `dynamic_view_versions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `dynamic_view_id` int(11), `version` int(11), `type` varchar(255), `name` varchar(255), `format` varchar(255), `handler` varchar(255), `body` text, `created_at` datetime, `updated_at` datetime, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `version_comment` varchar(255), `created_by_id` int(11), `updated_by_id` int(11)) [0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20080815014733')[0m
+Migrating to CreatePages (20080815014735)
+  [4;36;1mSQL (1.7ms)[0m   [0;1mCREATE TABLE `pages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `lock_version` int(11) DEFAULT 0, `name` varchar(255), `title` varchar(255), `path` varchar(255), `template_file_name` varchar(255), `description` text, `keywords` text, `language` varchar(255), `cacheable` tinyint(1) DEFAULT 0, `hidden` tinyint(1) DEFAULT 0, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `created_by_id` int(11), `updated_by_id` int(11), `created_at` datetime, `updated_at` datetime) [0m
+  [4;35;1mSQL (2.7ms)[0m   [0mCREATE TABLE `page_versions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `page_id` int(11), `version` int(11), `name` varchar(255), `title` varchar(255), `path` varchar(255), `template_file_name` varchar(255), `description` text, `keywords` text, `language` varchar(255), `cacheable` tinyint(1) DEFAULT 0, `hidden` tinyint(1) DEFAULT 0, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `version_comment` varchar(255), `created_by_id` int(11), `updated_by_id` int(11), `created_at` datetime, `updated_at` datetime) [0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080815014735')[0m
+Migrating to CreateContentTypeGroups (20080815014736)
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `content_type_groups` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mContentTypeGroup Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `content_type_groups`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mContentTypeGroup Create (0.2ms)[0m   [0;1mINSERT INTO `content_type_groups` (`name`, `created_at`, `updated_at`) VALUES('Core', '2009-04-30 19:08:47', '2009-04-30 19:08:47')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080815014736')[0m
+Migrating to CreateContentTypes (20080815014737)
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `content_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `content_type_group_id` int(11), `priority` int(11) DEFAULT 2, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080815014737')[0m
+Migrating to CreateCategoryTypes (20080815014738)
+  [4;35;1mSQL (2.8ms)[0m   [0mCREATE TABLE `category_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mContentType Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `content_types`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mContentTypeGroup Load (0.2ms)[0m   [0;1mSELECT * FROM `content_type_groups` WHERE (`content_type_groups`.`name` = 'Categorization') LIMIT 1[0m
+  [4;35;1mContentTypeGroup Create (0.2ms)[0m   [0mINSERT INTO `content_type_groups` (`name`, `created_at`, `updated_at`) VALUES('Categorization', '2009-04-30 19:08:47', '2009-04-30 19:08:47')[0m
+  [4;36;1mContentType Create (0.1ms)[0m   [0;1mINSERT INTO `content_types` (`name`, `created_at`, `updated_at`, `priority`, `content_type_group_id`) VALUES('CategoryType', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 2, 2)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080815014738')[0m
+Migrating to CreateCategories (20080815014739)
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE `categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `category_type_id` int(11), `parent_id` int(11), `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mContentTypeGroup Load (0.2ms)[0m   [0mSELECT * FROM `content_type_groups` WHERE (`content_type_groups`.`name` = 'Categorization') LIMIT 1[0m
+  [4;36;1mContentType Create (0.2ms)[0m   [0;1mINSERT INTO `content_types` (`name`, `created_at`, `updated_at`, `priority`, `content_type_group_id`) VALUES('Category', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 2, 2)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080815014739')[0m
+Migrating to CreateConnectors (20080815214539)
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `connectors` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `page_id` int(11), `page_version` int(11), `connectable_id` int(11), `connectable_type` varchar(255), `connectable_version` int(11), `container` varchar(255), `position` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080815214539')[0m
+Migrating to CreateHtmlBlocks (20080815220350)
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE TABLE `html_blocks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `lock_version` int(11) DEFAULT 0, `name` varchar(255), `content` varchar(65537), `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `created_by_id` int(11), `updated_by_id` int(11), `created_at` datetime, `updated_at` datetime) [0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `html_block_versions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `html_block_id` int(11), `version` int(11), `name` varchar(255), `content` varchar(65537), `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `version_comment` varchar(255), `created_by_id` int(11), `updated_by_id` int(11), `created_at` datetime, `updated_at` datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mContentTypeGroup Load (0.2ms)[0m   [0;1mSELECT * FROM `content_type_groups` WHERE (`content_type_groups`.`name` = 'Core') LIMIT 1[0m
+  [4;35;1mContentType Create (0.2ms)[0m   [0mINSERT INTO `content_types` (`name`, `created_at`, `updated_at`, `priority`, `content_type_group_id`) VALUES('HtmlBlock', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 1, 1)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20080815220350')[0m
+Migrating to CreateSections (20080819193254)
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `sections` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `path` varchar(255), `root` tinyint(1) DEFAULT 0, `hidden` tinyint(1) DEFAULT 0, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20080819193254')[0m
+Migrating to CreatePortlets (20080819213733)
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `portlets` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `type` varchar(255), `name` varchar(255), `archived` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `created_by_id` int(11), `updated_by_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE TABLE `portlet_attributes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `portlet_id` int(11), `name` varchar(255), `value` text) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mContentTypeGroup Load (0.3ms)[0m   [0mSELECT * FROM `content_type_groups` WHERE (`content_type_groups`.`name` = 'Core') LIMIT 1[0m
+  [4;36;1mContentType Create (0.2ms)[0m   [0;1mINSERT INTO `content_types` (`name`, `created_at`, `updated_at`, `priority`, `content_type_group_id`) VALUES('Portlet', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 1, 1)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080819213733')[0m
+Migrating to CreateRedirects (20080917222336)
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `redirects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `from_path` varchar(255), `to_path` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080917222336')[0m
+Migrating to CreateAttachments (20080922203815)
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `attachments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `lock_version` int(11) DEFAULT 0, `file_path` varchar(255), `file_location` varchar(255), `file_extension` varchar(255), `file_type` varchar(255), `file_size` int(11), `created_at` datetime, `updated_at` datetime, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `created_by_id` int(11), `updated_by_id` int(11)) [0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mCREATE TABLE `attachment_versions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `attachment_id` int(11), `version` int(11), `file_path` varchar(255), `file_location` varchar(255), `file_extension` varchar(255), `file_type` varchar(255), `file_size` int(11), `created_at` datetime, `updated_at` datetime, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `version_comment` varchar(255), `created_by_id` int(11), `updated_by_id` int(11)) [0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20080922203815')[0m
+Migrating to CreateFileBlocks (20080922215729)
+  [4;36;1mSQL (1.6ms)[0m   [0;1mCREATE TABLE `file_blocks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `lock_version` int(11) DEFAULT 0, `type` varchar(255), `name` varchar(255), `attachment_id` int(11), `attachment_version` int(11), `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `created_by_id` int(11), `updated_by_id` int(11), `created_at` datetime, `updated_at` datetime) [0m
+  [4;35;1mSQL (1.5ms)[0m   [0mCREATE TABLE `file_block_versions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `file_block_id` int(11), `version` int(11), `type` varchar(255), `name` varchar(255), `attachment_id` int(11), `attachment_version` int(11), `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `version_comment` varchar(255), `created_by_id` int(11), `updated_by_id` int(11), `created_at` datetime, `updated_at` datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mContentTypeGroup Load (0.2ms)[0m   [0mSELECT * FROM `content_type_groups` WHERE (`content_type_groups`.`name` = 'Core') LIMIT 1[0m
+  [4;36;1mContentType Create (0.2ms)[0m   [0;1mINSERT INTO `content_types` (`name`, `created_at`, `updated_at`, `priority`, `content_type_group_id`) VALUES('FileBlock', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 2, 1)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mContentTypeGroup Load (0.1ms)[0m   [0mSELECT * FROM `content_type_groups` WHERE (`content_type_groups`.`name` = 'Core') LIMIT 1[0m
+  [4;36;1mContentType Create (0.1ms)[0m   [0;1mINSERT INTO `content_types` (`name`, `created_at`, `updated_at`, `priority`, `content_type_group_id`) VALUES('ImageBlock', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 2, 1)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20080922215729')[0m
+Migrating to CreateGroupTypes (20081007190155)
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE TABLE `group_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `guest` tinyint(1) DEFAULT 0, `cms_access` tinyint(1) DEFAULT 0, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20081007190155')[0m
+Migrating to CreateGroups (20081007190156)
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE `groups` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `code` varchar(255), `group_type_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE `user_group_memberships` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `group_id` int(11)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20081007190156')[0m
+Migrating to CreatePermissions (20081008182341)
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE `permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `full_name` varchar(255), `description` varchar(255), `for_module` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE TABLE `group_permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `group_id` int(11), `permission_id` int(11)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE `group_type_permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `group_type_id` int(11), `permission_id` int(11)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20081008182341')[0m
+Migrating to CreateGroupSections (20081009202349)
+  [4;36;1mSQL (4.6ms)[0m   [0;1mCREATE TABLE `group_sections` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `group_id` int(11), `section_id` int(11)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20081009202349')[0m
+Migrating to CreateSites (20081013181547)
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `sites` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `domain` varchar(255), `the_default` tinyint(1), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20081013181547')[0m
+Migrating to CreateSectionNodes (20081020152051)
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `section_nodes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `section_id` int(11), `node_type` varchar(255), `node_id` int(11), `position` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20081020152051')[0m
+Migrating to CreateLinks (20081031140510)
+  [4;36;1mSQL (1.4ms)[0m   [0;1mCREATE TABLE `links` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `lock_version` int(11) DEFAULT 0, `name` varchar(255), `url` varchar(255), `new_window` tinyint(1) DEFAULT 0, `created_at` datetime, `updated_at` datetime, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `created_by_id` int(11), `updated_by_id` int(11)) [0m
+  [4;35;1mSQL (1.4ms)[0m   [0mCREATE TABLE `link_versions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `link_id` int(11), `version` int(11), `name` varchar(255), `url` varchar(255), `new_window` tinyint(1) DEFAULT 0, `created_at` datetime, `updated_at` datetime, `published` tinyint(1) DEFAULT 0, `deleted` tinyint(1) DEFAULT 0, `archived` tinyint(1) DEFAULT 0, `version_comment` varchar(255), `created_by_id` int(11), `updated_by_id` int(11)) [0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20081031140510')[0m
+Migrating to CreateTags (20081031140511)
+  [4;35;1mSQL (1.4ms)[0m   [0mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mContentTypeGroup Load (0.2ms)[0m   [0mSELECT * FROM `content_type_groups` WHERE (`content_type_groups`.`name` = 'Categorization') LIMIT 1[0m
+  [4;36;1mContentType Create (0.2ms)[0m   [0;1mINSERT INTO `content_types` (`name`, `created_at`, `updated_at`, `priority`, `content_type_group_id`) VALUES('Tag', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 2, 2)[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20081031140511')[0m
+Migrating to CreateTaggings (20081031140512)
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `taggable_version` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20081031140512')[0m
+Migrating to LoadSeedData (20081114172307)
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Exists (0.3ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'cmsadmin') LIMIT 1[0m
+  [4;36;1mUser Create (0.2ms)[0m   [0;1mINSERT INTO `users` (`salt`, `created_at`, `expires_at`, `crypted_password`, `remember_token_expires_at`, `updated_at`, `last_name`, `remember_token`, `login`, `first_name`, `email`) VALUES('4365c6dd2dd5bfeb4c8a7f697bb10b1db431b00a', '2009-04-30 19:08:47', NULL, '147a75600e817192f1ec6641a110d0415db94fe2', NULL, '2009-04-30 19:08:47', 'Administrator', NULL, 'cmsadmin', 'CMS', 'cmsadmin@example.com')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPermission Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `permissions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPermission Exists (0.2ms)[0m   [0;1mSELECT `permissions`.id FROM `permissions` WHERE (`permissions`.`name` = BINARY 'administrate') LIMIT 1[0m
+  [4;35;1mPermission Create (0.2ms)[0m   [0mINSERT INTO `permissions` (`name`, `created_at`, `updated_at`, `for_module`, `full_name`, `description`) VALUES('administrate', '2009-04-30 19:08:47', '2009-04-30 19:08:47', NULL, 'Administer CMS', 'Allows users to administer the CMS, including adding users and groups.')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPermission Exists (0.2ms)[0m   [0;1mSELECT `permissions`.id FROM `permissions` WHERE (`permissions`.`name` = BINARY 'edit_content') LIMIT 1[0m
+  [4;35;1mPermission Create (0.2ms)[0m   [0mINSERT INTO `permissions` (`name`, `created_at`, `updated_at`, `for_module`, `full_name`, `description`) VALUES('edit_content', '2009-04-30 19:08:47', '2009-04-30 19:08:47', NULL, 'Edit Content', 'Allows users to Add, Edit and Delete both Pages and Blocks. Can Save (but not Publish) and Assign them as well.')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPermission Exists (0.2ms)[0m   [0;1mSELECT `permissions`.id FROM `permissions` WHERE (`permissions`.`name` = BINARY 'publish_content') LIMIT 1[0m
+  [4;35;1mPermission Create (0.2ms)[0m   [0mINSERT INTO `permissions` (`name`, `created_at`, `updated_at`, `for_module`, `full_name`, `description`) VALUES('publish_content', '2009-04-30 19:08:47', '2009-04-30 19:08:47', NULL, 'Publish Content', 'Allows users to Save and Publish, Hide and Archive both Pages and Blocks.')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroupType Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `group_types`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroupType Create (0.2ms)[0m   [0mINSERT INTO `group_types` (`name`, `created_at`, `updated_at`, `cms_access`, `guest`) VALUES('Guest', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 0, 1)[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroupType Create (0.2ms)[0m   [0;1mINSERT INTO `group_types` (`name`, `created_at`, `updated_at`, `cms_access`, `guest`) VALUES('Registered Public User', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 0, 0)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroupType Create (0.2ms)[0m   [0mINSERT INTO `group_types` (`name`, `created_at`, `updated_at`, `cms_access`, `guest`) VALUES('CMS User', '2009-04-30 19:08:47', '2009-04-30 19:08:47', 1, 0)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroupType Load (0.3ms)[0m   [0mSELECT * FROM `group_types` WHERE (`group_types`.`id` = 3) [0m
+  [4;36;1mPermission Load (0.3ms)[0m   [0;1mSELECT * FROM `permissions` WHERE (`permissions`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroupTypePermission Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `group_type_permissions`[0m
+  [4;35;1mGroupTypePermission Create (0.2ms)[0m   [0mINSERT INTO `group_type_permissions` (`group_type_id`, `permission_id`) VALUES(3, 2)[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroupType Load (0.2ms)[0m   [0mSELECT * FROM `group_types` WHERE (`group_types`.`id` = 3) [0m
+  [4;36;1mPermission Load (0.2ms)[0m   [0;1mSELECT * FROM `permissions` WHERE (`permissions`.`id` = 3) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroupTypePermission Create (0.1ms)[0m   [0;1mINSERT INTO `group_type_permissions` (`group_type_id`, `permission_id`) VALUES(3, 3)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mGroupType Load (0.2ms)[0m   [0;1mSELECT * FROM `group_types` WHERE (`group_types`.`id` = 1) [0m
+  [4;35;1mGroup Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroup Create (0.2ms)[0m   [0mINSERT INTO `groups` (`name`, `created_at`, `code`, `group_type_id`, `updated_at`) VALUES('Guest', '2009-04-30 19:08:47', 'guest', 1, '2009-04-30 19:08:47')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroupType Load (0.2ms)[0m   [0mSELECT * FROM `group_types` WHERE (`group_types`.`id` = 3) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroup Create (0.2ms)[0m   [0mINSERT INTO `groups` (`name`, `created_at`, `code`, `group_type_id`, `updated_at`) VALUES('Cms Administrators', '2009-04-30 19:08:47', 'cms-admin', 3, '2009-04-30 19:08:47')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroupType Load (0.2ms)[0m   [0mSELECT * FROM `group_types` WHERE (`group_types`.`id` = 3) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroup Create (0.1ms)[0m   [0mINSERT INTO `groups` (`name`, `created_at`, `code`, `group_type_id`, `updated_at`) VALUES('Content Editors', '2009-04-30 19:08:47', 'content-editor', 3, '2009-04-30 19:08:47')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mGroup Load (0.2ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUserGroupMembership Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `user_group_memberships`[0m
+  [4;35;1mUserGroupMembership Create (0.2ms)[0m   [0mINSERT INTO `user_group_memberships` (`group_id`, `user_id`) VALUES(2, 1)[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mGroup Load (0.1ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 3) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUserGroupMembership Create (0.1ms)[0m   [0;1mINSERT INTO `user_group_memberships` (`group_id`, `user_id`) VALUES(3, 1)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mGroup Load (0.1ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 2) [0m
+  [4;35;1mPermission Load (0.2ms)[0m   [0mSELECT * FROM `permissions` WHERE (`permissions`.`id` = 1) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroupPermission Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `group_permissions`[0m
+  [4;36;1mGroupPermission Exists (0.2ms)[0m   [0;1mSELECT `group_permissions`.id FROM `group_permissions` WHERE (`group_permissions`.`permission_id` = 1 AND `group_permissions`.group_id = 2) LIMIT 1[0m
+  [4;35;1mGroupPermission Create (0.2ms)[0m   [0mINSERT INTO `group_permissions` (`permission_id`, `group_id`) VALUES(1, 2)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroup Load (0.3ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 3) [0m
+  [4;36;1mPermission Load (0.2ms)[0m   [0;1mSELECT * FROM `permissions` WHERE (`permissions`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroupPermission Exists (0.2ms)[0m   [0;1mSELECT `group_permissions`.id FROM `group_permissions` WHERE (`group_permissions`.`permission_id` = 2 AND `group_permissions`.group_id = 3) LIMIT 1[0m
+  [4;35;1mGroupPermission Create (0.1ms)[0m   [0mINSERT INTO `group_permissions` (`permission_id`, `group_id`) VALUES(2, 3)[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroup Load (0.2ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 3) [0m
+  [4;36;1mPermission Load (0.2ms)[0m   [0;1mSELECT * FROM `permissions` WHERE (`permissions`.`id` = 3) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroupPermission Exists (0.1ms)[0m   [0;1mSELECT `group_permissions`.id FROM `group_permissions` WHERE (`group_permissions`.`permission_id` = 3 AND `group_permissions`.group_id = 3) LIMIT 1[0m
+  [4;35;1mGroupPermission Create (0.1ms)[0m   [0mINSERT INTO `group_permissions` (`permission_id`, `group_id`) VALUES(3, 3)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSite Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSite Exists (0.2ms)[0m   [0mSELECT `sites`.id FROM `sites` WHERE (`sites`.`domain` = BINARY 'example.com') LIMIT 1[0m
+  [4;36;1mSite Create (0.2ms)[0m   [0;1mINSERT INTO `sites` (`name`, `created_at`, `updated_at`, `domain`, `the_default`) VALUES('Default', '2009-04-30 19:08:48', '2009-04-30 19:08:48', 'example.com', NULL)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM `sites` WHERE (`sites`.`the_default` = 1) [0m
+  [4;36;1mSite Update (0.2ms)[0m   [0;1mUPDATE `sites` SET the_default = 0 [0m
+  [4;35;1mSite Update (0.1ms)[0m   [0mUPDATE `sites` SET `updated_at` = '2009-04-30 19:08:48', `name` = 'Default', `created_at` = '2009-04-30 19:08:48', `the_default` = 1, `domain` = 'example.com' WHERE `id` = 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM `sites` WHERE (`sites`.`the_default` = 1) [0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSection Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `sections`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSection Create (0.2ms)[0m   [0;1mINSERT INTO `sections` (`name`, `created_at`, `updated_at`, `root`, `path`, `hidden`) VALUES('My Site', '2009-04-30 19:08:48', '2009-04-30 19:08:48', 1, '/', 0)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSection Load (0.3ms)[0m   [0;1mSELECT * FROM `sections` WHERE (`sections`.`id` = 1) [0m
+  [4;35;1mSectionNode Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `section_nodes`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSection Create (0.2ms)[0m   [0mINSERT INTO `sections` (`name`, `created_at`, `updated_at`, `root`, `path`, `hidden`) VALUES('system', '2009-04-30 19:08:48', '2009-04-30 19:08:48', 0, '/system', 1)[0m
+  [4;36;1mSectionNode Load (0.2ms)[0m   [0;1mSELECT * FROM `section_nodes` WHERE (section_id = 1) ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mSectionNode Create (0.1ms)[0m   [0mINSERT INTO `section_nodes` (`position`, `created_at`, `section_id`, `node_type`, `updated_at`, `node_id`) VALUES(1, '2009-04-30 19:08:48', 1, 'Section', '2009-04-30 19:08:48', 2)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mGroup Load (0.2ms)[0m   [0mSELECT * FROM `groups` [0m
+  [4;36;1mSection Load (0.1ms)[0m   [0;1mSELECT * FROM `sections` [0m
+  [4;35;1mSection Load (0.3ms)[0m   [0mSELECT `sections`.* FROM `sections` INNER JOIN `group_sections` ON `sections`.id = `group_sections`.section_id WHERE ((`group_sections`.group_id = 1)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroupSection Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `group_sections`[0m
+  [4;36;1mGroupSection Create (0.2ms)[0m   [0;1mINSERT INTO `group_sections` (`section_id`, `group_id`) VALUES(1, 1)[0m
+  [4;35;1mGroupSection Create (0.1ms)[0m   [0mINSERT INTO `group_sections` (`section_id`, `group_id`) VALUES(2, 1)[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSection Load (0.3ms)[0m   [0mSELECT * FROM `sections` [0m
+  [4;36;1mSection Load (0.3ms)[0m   [0;1mSELECT `sections`.* FROM `sections` INNER JOIN `group_sections` ON `sections`.id = `group_sections`.section_id WHERE ((`group_sections`.group_id = 2)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroupSection Create (0.1ms)[0m   [0;1mINSERT INTO `group_sections` (`section_id`, `group_id`) VALUES(1, 2)[0m
+  [4;35;1mGroupSection Create (0.1ms)[0m   [0mINSERT INTO `group_sections` (`section_id`, `group_id`) VALUES(2, 2)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSection Load (0.3ms)[0m   [0mSELECT * FROM `sections` [0m
+  [4;36;1mSection Load (0.2ms)[0m   [0;1mSELECT `sections`.* FROM `sections` INNER JOIN `group_sections` ON `sections`.id = `group_sections`.section_id WHERE ((`group_sections`.group_id = 3)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroupSection Create (0.2ms)[0m   [0;1mINSERT INTO `group_sections` (`section_id`, `group_id`) VALUES(1, 3)[0m
+  [4;35;1mGroupSection Create (0.1ms)[0m   [0mINSERT INTO `group_sections` (`section_id`, `group_id`) VALUES(2, 3)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSection Load (0.2ms)[0m   [0mSELECT * FROM `sections` WHERE (`sections`.`id` = 1) [0m
+  [4;36;1mPage Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `pages`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/') AND (pages.deleted = 0) [0m
+  [4;35;1mPage::Version Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `page_versions`[0m
+  [4;36;1mConnector Load (0.4ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 0) AND (`connectors`.page_id = NULL)) AND (`connectors`.page_id = NULL)) ORDER BY connectors.container, connectors.position[0m
+  [4;35;1mPage Create (0.2ms)[0m   [0mINSERT INTO `pages` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `lock_version`, `language`, `archived`, `deleted`, `version`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Home', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 0, 1, '2009-04-30 19:08:48', 0, NULL, 0, 0, 1, '/', NULL, NULL, 1, 0)[0m
+  [4;36;1mPage::Version Load (0.1ms)[0m   [0;1mSELECT * FROM `page_versions` WHERE (`page_versions`.page_id = NULL) [0m
+  [4;35;1mPage::Version Create (0.2ms)[0m   [0mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Home', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 0, 1, '2009-04-30 19:08:48', 1, NULL, 0, 0, 1, 'Created', '/', NULL, NULL, 1, 0)[0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (`connectors`.page_id = NULL) ORDER BY connectors.container, connectors.position[0m
+  [4;35;1mSectionNode Load (0.2ms)[0m   [0mSELECT * FROM `section_nodes` WHERE (section_id = 1) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSectionNode Create (0.1ms)[0m   [0;1mINSERT INTO `section_nodes` (`position`, `created_at`, `section_id`, `node_type`, `updated_at`, `node_id`) VALUES(2, '2009-04-30 19:08:48', 1, 'Page', '2009-04-30 19:08:48', 1)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSection Load (0.3ms)[0m   [0;1mSELECT * FROM `sections` WHERE (`sections`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/not_found') AND (pages.deleted = 0) [0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 0) AND (`connectors`.page_id = NULL)) AND (`connectors`.page_id = NULL)) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mPage Create (0.2ms)[0m   [0;1mINSERT INTO `pages` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `lock_version`, `language`, `archived`, `deleted`, `version`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Page Not Found', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 0, NULL, 0, 0, 1, '/system/not_found', NULL, NULL, 1, 1)[0m
+  [4;35;1mPage::Version Load (0.2ms)[0m   [0mSELECT * FROM `page_versions` WHERE (`page_versions`.page_id = NULL) [0m
+  [4;36;1mPage::Version Create (0.1ms)[0m   [0;1mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Page Not Found', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 2, NULL, 0, 0, 1, 'Created', '/system/not_found', NULL, NULL, 1, 1)[0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (`connectors`.page_id = NULL) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mSectionNode Load (0.2ms)[0m   [0;1mSELECT * FROM `section_nodes` WHERE (section_id = 2) ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mSectionNode Create (0.1ms)[0m   [0mINSERT INTO `section_nodes` (`position`, `created_at`, `section_id`, `node_type`, `updated_at`, `node_id`) VALUES(1, '2009-04-30 19:08:48', 2, 'Page', '2009-04-30 19:08:48', 2)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSection Load (0.2ms)[0m   [0mSELECT * FROM `sections` WHERE (`sections`.`id` = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/access_denied') AND (pages.deleted = 0) [0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 0) AND (`connectors`.page_id = NULL)) AND (`connectors`.page_id = NULL)) ORDER BY connectors.container, connectors.position[0m
+  [4;35;1mPage Create (0.3ms)[0m   [0mINSERT INTO `pages` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `lock_version`, `language`, `archived`, `deleted`, `version`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Access Denied', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 0, NULL, 0, 0, 1, '/system/access_denied', NULL, NULL, 1, 1)[0m
+  [4;36;1mPage::Version Load (0.2ms)[0m   [0;1mSELECT * FROM `page_versions` WHERE (`page_versions`.page_id = NULL) [0m
+  [4;35;1mPage::Version Create (0.2ms)[0m   [0mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Access Denied', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 3, NULL, 0, 0, 1, 'Created', '/system/access_denied', NULL, NULL, 1, 1)[0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (`connectors`.page_id = NULL) ORDER BY connectors.container, connectors.position[0m
+  [4;35;1mSectionNode Load (0.2ms)[0m   [0mSELECT * FROM `section_nodes` WHERE (section_id = 2) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSectionNode Create (0.2ms)[0m   [0;1mINSERT INTO `section_nodes` (`position`, `created_at`, `section_id`, `node_type`, `updated_at`, `node_id`) VALUES(2, '2009-04-30 19:08:48', 2, 'Page', '2009-04-30 19:08:48', 3)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSection Load (0.1ms)[0m   [0;1mSELECT * FROM `sections` WHERE (`sections`.`id` = 2) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/server_error') AND (pages.deleted = 0) [0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 0) AND (`connectors`.page_id = NULL)) AND (`connectors`.page_id = NULL)) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mPage Create (0.2ms)[0m   [0;1mINSERT INTO `pages` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `lock_version`, `language`, `archived`, `deleted`, `version`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Server Error', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 0, NULL, 0, 0, 1, '/system/server_error', NULL, NULL, 1, 1)[0m
+  [4;35;1mPage::Version Load (0.2ms)[0m   [0mSELECT * FROM `page_versions` WHERE (`page_versions`.page_id = NULL) [0m
+  [4;36;1mPage::Version Create (0.2ms)[0m   [0;1mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Server Error', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 4, NULL, 0, 0, 1, 'Created', '/system/server_error', NULL, NULL, 1, 1)[0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (`connectors`.page_id = NULL) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mSectionNode Load (0.2ms)[0m   [0;1mSELECT * FROM `section_nodes` WHERE (section_id = 2) ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mSectionNode Create (0.1ms)[0m   [0mINSERT INTO `section_nodes` (`position`, `created_at`, `section_id`, `node_type`, `updated_at`, `node_id`) VALUES(3, '2009-04-30 19:08:48', 2, 'Page', '2009-04-30 19:08:48', 4)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mHtmlBlock Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `html_blocks`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mHtmlBlock::Version Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `html_block_versions`[0m
+  [4;36;1mHtmlBlock Create (0.2ms)[0m   [0;1mINSERT INTO `html_blocks` (`name`, `updated_by_id`, `created_at`, `published`, `created_by_id`, `updated_at`, `lock_version`, `archived`, `deleted`, `version`, `content`) VALUES('Page Not Found', 1, '2009-04-30 19:08:48', 1, 1, '2009-04-30 19:08:48', 0, 0, 0, 1, '<p>The page you tried to access does not exist on this server.</p>')[0m
+  [4;35;1mHtmlBlock::Version Load (0.2ms)[0m   [0mSELECT * FROM `html_block_versions` WHERE (`html_block_versions`.html_block_id = NULL) [0m
+  [4;36;1mHtmlBlock::Version Create (0.2ms)[0m   [0;1mINSERT INTO `html_block_versions` (`name`, `updated_by_id`, `html_block_id`, `created_at`, `published`, `created_by_id`, `updated_at`, `archived`, `deleted`, `version`, `version_comment`, `content`) VALUES('Page Not Found', 1, 1, '2009-04-30 19:08:48', 1, 1, '2009-04-30 19:08:48', 0, 0, 1, 'Created', '<p>The page you tried to access does not exist on this server.</p>')[0m
+  [4;35;1mConnector Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `connectors`[0m
+  [4;36;1mPage Load Including Associations (0.3ms)[0m   [0;1mSELECT `pages`.`id` AS t0_r0, `pages`.`version` AS t0_r1, `pages`.`lock_version` AS t0_r2, `pages`.`name` AS t0_r3, `pages`.`title` AS t0_r4, `pages`.`path` AS t0_r5, `pages`.`template_file_name` AS t0_r6, `pages`.`description` AS t0_r7, `pages`.`keywords` AS t0_r8, `pages`.`language` AS t0_r9, `pages`.`cacheable` AS t0_r10, `pages`.`hidden` AS t0_r11, `pages`.`published` AS t0_r12, `pages`.`deleted` AS t0_r13, `pages`.`archived` AS t0_r14, `pages`.`created_by_id` AS t0_r15, `pages`.`updated_by_id` AS t0_r16, `pages`.`created_at` AS t0_r17, `pages`.`updated_at` AS t0_r18, `connectors`.`id` AS t1_r0, `connectors`.`page_id` AS t1_r1, `connectors`.`page_version` AS t1_r2, `connectors`.`connectable_id` AS t1_r3, `connectors`.`connectable_type` AS t1_r4, `connectors`.`connectable_version` AS t1_r5, `connectors`.`container` AS t1_r6, `connectors`.`position` AS t1_r7, `connectors`.`created_at` AS t1_r8, `connectors`.`updated_at` AS t1_r9 FROM `pages` LEFT OUTER JOIN `connectors` ON connectors.page_id = pages.id WHERE (((connectors.connectable_id = 1 and connectors.connectable_type = 'HtmlBlock' and connectors.connectable_version = 0) AND (pages.deleted = 0)) AND (connectors.connectable_id = 1 and connectors.connectable_type = 'HtmlBlock' and connectors.connectable_version = 0)) [0m
+  [4;35;1mTagging Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `taggings`[0m
+  [4;36;1mTag Load (0.3ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 1) AND (`taggings`.taggable_type = 'HtmlBlock')) ORDER BY tags.name[0m
+  [4;35;1mTagging Load (0.1ms)[0m   [0mSELECT * FROM `taggings` WHERE (`taggings`.taggable_id = 1 AND `taggings`.taggable_type = 'HtmlBlock') [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM `pages` WHERE (`pages`.`id` = 2) AND (pages.deleted = 0) [0m
+  [4;36;1mHtmlBlock Load (0.2ms)[0m   [0;1mSELECT * FROM `html_blocks` WHERE (`html_blocks`.`id` = 1) AND (html_blocks.deleted = 0) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/not_found' and id != 2) AND (pages.deleted = 0) [0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 1) AND (`connectors`.page_id = 2)) AND (`connectors`.page_id = 2)) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mPage Update with optimistic locking (0.2ms)[0m   [0;1m UPDATE `pages`
+ SET `updated_at` = '2009-04-30 19:08:48', `version` = 2, `published` = 0, `lock_version` = 1
+ WHERE id = 2
+ AND `lock_version` = 0
+[0m
+  [4;35;1mPage::Version Create (0.2ms)[0m   [0mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Page Not Found', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 0, 1, '2009-04-30 19:08:48', 2, NULL, 0, 0, 2, 'Html Block \'Page Not Found\' was added to the \'main\' container', '/system/not_found', NULL, NULL, 1, 1)[0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (connectors.page_id = 2 and connectors.page_version = 2 and connectors.container = 'main') ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mConnector Create (0.2ms)[0m   [0mINSERT INTO `connectors` (`connectable_id`, `position`, `created_at`, `container`, `updated_at`, `page_id`, `connectable_version`, `page_version`, `connectable_type`) VALUES(1, 1, '2009-04-30 19:08:48', 'main', '2009-04-30 19:08:48', 2, 1, 2, 'HtmlBlock')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPage Load (0.3ms)[0m   [0mSELECT * FROM `pages` WHERE (`pages`.`id` = 2) AND (pages.deleted = 0) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/not_found' and id != 2) AND (pages.deleted = 0) [0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 2) AND (`connectors`.page_id = 2)) AND (`connectors`.page_id = 2)) ORDER BY connectors.container, connectors.position[0m
+  [4;35;1mHtmlBlock Load (0.2ms)[0m   [0mSELECT * FROM `html_blocks` WHERE (`html_blocks`.`id` = 1) AND (html_blocks.deleted = 0) [0m
+  [4;36;1mHtmlBlock::Version Load (0.2ms)[0m   [0;1mSELECT * FROM `html_block_versions` WHERE (`html_block_versions`.html_block_id = 1 AND (`html_block_versions`.`version` = 1)) LIMIT 1[0m
+  [4;35;1mPage Update with optimistic locking (0.3ms)[0m   [0m UPDATE `pages`
+ SET `updated_at` = '2009-04-30 19:08:48', `version` = 3, `published` = 1, `lock_version` = 2
+ WHERE id = 2
+ AND `lock_version` = 1
+[0m
+  [4;36;1mPage::Version Create (0.2ms)[0m   [0;1mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Page Not Found', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 2, NULL, 0, 0, 3, 'Published', '/system/not_found', NULL, NULL, 1, 1)[0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (connectors.page_id = 2 and connectors.page_version = 3 and connectors.container = 'main') ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mConnector Create (0.2ms)[0m   [0;1mINSERT INTO `connectors` (`connectable_id`, `position`, `created_at`, `container`, `updated_at`, `page_id`, `connectable_version`, `page_version`, `connectable_type`) VALUES(1, 1, '2009-04-30 19:08:48', 'main', '2009-04-30 19:08:48', 2, 1, 3, 'HtmlBlock')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mHtmlBlock Create (0.2ms)[0m   [0mINSERT INTO `html_blocks` (`name`, `updated_by_id`, `created_at`, `published`, `created_by_id`, `updated_at`, `lock_version`, `archived`, `deleted`, `version`, `content`) VALUES('Access Denied', 1, '2009-04-30 19:08:48', 1, 1, '2009-04-30 19:08:48', 0, 0, 0, 1, '<p>You have tried to reach a resource or page which you do not have permission to view.</p>')[0m
+  [4;36;1mHtmlBlock::Version Load (0.2ms)[0m   [0;1mSELECT * FROM `html_block_versions` WHERE (`html_block_versions`.html_block_id = NULL) [0m
+  [4;35;1mHtmlBlock::Version Create (0.2ms)[0m   [0mINSERT INTO `html_block_versions` (`name`, `updated_by_id`, `html_block_id`, `created_at`, `published`, `created_by_id`, `updated_at`, `archived`, `deleted`, `version`, `version_comment`, `content`) VALUES('Access Denied', 1, 2, '2009-04-30 19:08:48', 1, 1, '2009-04-30 19:08:48', 0, 0, 1, 'Created', '<p>You have tried to reach a resource or page which you do not have permission to view.</p>')[0m
+  [4;36;1mPage Load Including Associations (0.3ms)[0m   [0;1mSELECT `pages`.`id` AS t0_r0, `pages`.`version` AS t0_r1, `pages`.`lock_version` AS t0_r2, `pages`.`name` AS t0_r3, `pages`.`title` AS t0_r4, `pages`.`path` AS t0_r5, `pages`.`template_file_name` AS t0_r6, `pages`.`description` AS t0_r7, `pages`.`keywords` AS t0_r8, `pages`.`language` AS t0_r9, `pages`.`cacheable` AS t0_r10, `pages`.`hidden` AS t0_r11, `pages`.`published` AS t0_r12, `pages`.`deleted` AS t0_r13, `pages`.`archived` AS t0_r14, `pages`.`created_by_id` AS t0_r15, `pages`.`updated_by_id` AS t0_r16, `pages`.`created_at` AS t0_r17, `pages`.`updated_at` AS t0_r18, `connectors`.`id` AS t1_r0, `connectors`.`page_id` AS t1_r1, `connectors`.`page_version` AS t1_r2, `connectors`.`connectable_id` AS t1_r3, `connectors`.`connectable_type` AS t1_r4, `connectors`.`connectable_version` AS t1_r5, `connectors`.`container` AS t1_r6, `connectors`.`position` AS t1_r7, `connectors`.`created_at` AS t1_r8, `connectors`.`updated_at` AS t1_r9 FROM `pages` LEFT OUTER JOIN `connectors` ON connectors.page_id = pages.id WHERE (((connectors.connectable_id = 2 and connectors.connectable_type = 'HtmlBlock' and connectors.connectable_version = 0) AND (pages.deleted = 0)) AND (connectors.connectable_id = 2 and connectors.connectable_type = 'HtmlBlock' and connectors.connectable_version = 0)) [0m
+  [4;35;1mTag Load (0.2ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 2) AND (`taggings`.taggable_type = 'HtmlBlock')) ORDER BY tags.name[0m
+  [4;36;1mTagging Load (0.1ms)[0m   [0;1mSELECT * FROM `taggings` WHERE (`taggings`.taggable_id = 2 AND `taggings`.taggable_type = 'HtmlBlock') [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM `pages` WHERE (`pages`.`id` = 3) AND (pages.deleted = 0) [0m
+  [4;35;1mHtmlBlock Load (0.2ms)[0m   [0mSELECT * FROM `html_blocks` WHERE (`html_blocks`.`id` = 2) AND (html_blocks.deleted = 0) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/access_denied' and id != 3) AND (pages.deleted = 0) [0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 1) AND (`connectors`.page_id = 3)) AND (`connectors`.page_id = 3)) ORDER BY connectors.container, connectors.position[0m
+  [4;35;1mPage Update with optimistic locking (0.2ms)[0m   [0m UPDATE `pages`
+ SET `updated_at` = '2009-04-30 19:08:48', `version` = 2, `published` = 0, `lock_version` = 1
+ WHERE id = 3
+ AND `lock_version` = 0
+[0m
+  [4;36;1mPage::Version Create (0.2ms)[0m   [0;1mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Access Denied', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 0, 1, '2009-04-30 19:08:48', 3, NULL, 0, 0, 2, 'Html Block \'Access Denied\' was added to the \'main\' container', '/system/access_denied', NULL, NULL, 1, 1)[0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (connectors.page_id = 3 and connectors.page_version = 2 and connectors.container = 'main') ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mConnector Create (0.1ms)[0m   [0;1mINSERT INTO `connectors` (`connectable_id`, `position`, `created_at`, `container`, `updated_at`, `page_id`, `connectable_version`, `page_version`, `connectable_type`) VALUES(2, 1, '2009-04-30 19:08:48', 'main', '2009-04-30 19:08:48', 3, 1, 2, 'HtmlBlock')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPage Load (0.3ms)[0m   [0;1mSELECT * FROM `pages` WHERE (`pages`.`id` = 3) AND (pages.deleted = 0) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/access_denied' and id != 3) AND (pages.deleted = 0) [0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 2) AND (`connectors`.page_id = 3)) AND (`connectors`.page_id = 3)) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mHtmlBlock Load (0.2ms)[0m   [0;1mSELECT * FROM `html_blocks` WHERE (`html_blocks`.`id` = 2) AND (html_blocks.deleted = 0) [0m
+  [4;35;1mHtmlBlock::Version Load (0.2ms)[0m   [0mSELECT * FROM `html_block_versions` WHERE (`html_block_versions`.html_block_id = 2 AND (`html_block_versions`.`version` = 1)) LIMIT 1[0m
+  [4;36;1mPage Update with optimistic locking (0.2ms)[0m   [0;1m UPDATE `pages`
+ SET `updated_at` = '2009-04-30 19:08:48', `version` = 3, `published` = 1, `lock_version` = 2
+ WHERE id = 3
+ AND `lock_version` = 1
+[0m
+  [4;35;1mPage::Version Create (0.2ms)[0m   [0mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Access Denied', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 3, NULL, 0, 0, 3, 'Published', '/system/access_denied', NULL, NULL, 1, 1)[0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (connectors.page_id = 3 and connectors.page_version = 3 and connectors.container = 'main') ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mConnector Create (0.1ms)[0m   [0mINSERT INTO `connectors` (`connectable_id`, `position`, `created_at`, `container`, `updated_at`, `page_id`, `connectable_version`, `page_version`, `connectable_type`) VALUES(2, 1, '2009-04-30 19:08:48', 'main', '2009-04-30 19:08:48', 3, 1, 3, 'HtmlBlock')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mHtmlBlock Create (0.2ms)[0m   [0;1mINSERT INTO `html_blocks` (`name`, `updated_by_id`, `created_at`, `published`, `created_by_id`, `updated_at`, `lock_version`, `archived`, `deleted`, `version`, `content`) VALUES('Server Error', 1, '2009-04-30 19:08:48', 1, 1, '2009-04-30 19:08:48', 0, 0, 0, 1, '<p>The server encountered an unexpected condition that prevented it from fulfilling the request.</p>')[0m
+  [4;35;1mHtmlBlock::Version Load (0.2ms)[0m   [0mSELECT * FROM `html_block_versions` WHERE (`html_block_versions`.html_block_id = NULL) [0m
+  [4;36;1mHtmlBlock::Version Create (0.2ms)[0m   [0;1mINSERT INTO `html_block_versions` (`name`, `updated_by_id`, `html_block_id`, `created_at`, `published`, `created_by_id`, `updated_at`, `archived`, `deleted`, `version`, `version_comment`, `content`) VALUES('Server Error', 1, 3, '2009-04-30 19:08:48', 1, 1, '2009-04-30 19:08:48', 0, 0, 1, 'Created', '<p>The server encountered an unexpected condition that prevented it from fulfilling the request.</p>')[0m
+  [4;35;1mPage Load Including Associations (0.3ms)[0m   [0mSELECT `pages`.`id` AS t0_r0, `pages`.`version` AS t0_r1, `pages`.`lock_version` AS t0_r2, `pages`.`name` AS t0_r3, `pages`.`title` AS t0_r4, `pages`.`path` AS t0_r5, `pages`.`template_file_name` AS t0_r6, `pages`.`description` AS t0_r7, `pages`.`keywords` AS t0_r8, `pages`.`language` AS t0_r9, `pages`.`cacheable` AS t0_r10, `pages`.`hidden` AS t0_r11, `pages`.`published` AS t0_r12, `pages`.`deleted` AS t0_r13, `pages`.`archived` AS t0_r14, `pages`.`created_by_id` AS t0_r15, `pages`.`updated_by_id` AS t0_r16, `pages`.`created_at` AS t0_r17, `pages`.`updated_at` AS t0_r18, `connectors`.`id` AS t1_r0, `connectors`.`page_id` AS t1_r1, `connectors`.`page_version` AS t1_r2, `connectors`.`connectable_id` AS t1_r3, `connectors`.`connectable_type` AS t1_r4, `connectors`.`connectable_version` AS t1_r5, `connectors`.`container` AS t1_r6, `connectors`.`position` AS t1_r7, `connectors`.`created_at` AS t1_r8, `connectors`.`updated_at` AS t1_r9 FROM `pages` LEFT OUTER JOIN `connectors` ON connectors.page_id = pages.id WHERE (((connectors.connectable_id = 3 and connectors.connectable_type = 'HtmlBlock' and connectors.connectable_version = 0) AND (pages.deleted = 0)) AND (connectors.connectable_id = 3 and connectors.connectable_type = 'HtmlBlock' and connectors.connectable_version = 0)) [0m
+  [4;36;1mTag Load (0.2ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = 3) AND (`taggings`.taggable_type = 'HtmlBlock')) ORDER BY tags.name[0m
+  [4;35;1mTagging Load (0.1ms)[0m   [0mSELECT * FROM `taggings` WHERE (`taggings`.taggable_id = 3 AND `taggings`.taggable_type = 'HtmlBlock') [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM `pages` WHERE (`pages`.`id` = 4) AND (pages.deleted = 0) [0m
+  [4;36;1mHtmlBlock Load (0.2ms)[0m   [0;1mSELECT * FROM `html_blocks` WHERE (`html_blocks`.`id` = 3) AND (html_blocks.deleted = 0) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/server_error' and id != 4) AND (pages.deleted = 0) [0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 1) AND (`connectors`.page_id = 4)) AND (`connectors`.page_id = 4)) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mPage Update with optimistic locking (0.2ms)[0m   [0;1m UPDATE `pages`
+ SET `updated_at` = '2009-04-30 19:08:48', `version` = 2, `published` = 0, `lock_version` = 1
+ WHERE id = 4
+ AND `lock_version` = 0
+[0m
+  [4;35;1mPage::Version Create (0.2ms)[0m   [0mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Server Error', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 0, 1, '2009-04-30 19:08:48', 4, NULL, 0, 0, 2, 'Html Block \'Server Error\' was added to the \'main\' container', '/system/server_error', NULL, NULL, 1, 1)[0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (connectors.page_id = 4 and connectors.page_version = 2 and connectors.container = 'main') ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mConnector Create (0.2ms)[0m   [0mINSERT INTO `connectors` (`connectable_id`, `position`, `created_at`, `container`, `updated_at`, `page_id`, `connectable_version`, `page_version`, `connectable_type`) VALUES(3, 1, '2009-04-30 19:08:48', 'main', '2009-04-30 19:08:48', 4, 1, 2, 'HtmlBlock')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPage Load (0.3ms)[0m   [0mSELECT * FROM `pages` WHERE (`pages`.`id` = 4) AND (pages.deleted = 0) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/system/server_error' and id != 4) AND (pages.deleted = 0) [0m
+  [4;36;1mConnector Load (0.2ms)[0m   [0;1mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 2) AND (`connectors`.page_id = 4)) AND (`connectors`.page_id = 4)) ORDER BY connectors.container, connectors.position[0m
+  [4;35;1mHtmlBlock Load (0.2ms)[0m   [0mSELECT * FROM `html_blocks` WHERE (`html_blocks`.`id` = 3) AND (html_blocks.deleted = 0) [0m
+  [4;36;1mHtmlBlock::Version Load (0.2ms)[0m   [0;1mSELECT * FROM `html_block_versions` WHERE (`html_block_versions`.html_block_id = 3 AND (`html_block_versions`.`version` = 1)) LIMIT 1[0m
+  [4;35;1mPage Update with optimistic locking (0.2ms)[0m   [0m UPDATE `pages`
+ SET `updated_at` = '2009-04-30 19:08:48', `version` = 3, `published` = 1, `lock_version` = 2
+ WHERE id = 4
+ AND `lock_version` = 1
+[0m
+  [4;36;1mPage::Version Create (0.2ms)[0m   [0;1mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Server Error', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 4, NULL, 0, 0, 3, 'Published', '/system/server_error', NULL, NULL, 1, 1)[0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (connectors.page_id = 4 and connectors.page_version = 3 and connectors.container = 'main') ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mConnector Create (0.2ms)[0m   [0;1mINSERT INTO `connectors` (`connectable_id`, `position`, `created_at`, `container`, `updated_at`, `page_id`, `connectable_version`, `page_version`, `connectable_type`) VALUES(3, 1, '2009-04-30 19:08:48', 'main', '2009-04-30 19:08:48', 4, 1, 3, 'HtmlBlock')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPageTemplate Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `dynamic_views`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `dynamic_views` WHERE (`dynamic_views`.`name` = BINARY 'default' AND `dynamic_views`.format = 'html' AND `dynamic_views`.handler = 'erb') AND (dynamic_views.deleted = 0) AND ( (`dynamic_views`.`type` = 'PageTemplate' ) ) [0m
+  [4;35;1mPageTemplate::Version Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `dynamic_view_versions`[0m
+  [4;36;1mPageTemplate Create (0.3ms)[0m   [0;1mINSERT INTO `dynamic_views` (`name`, `updated_by_id`, `format`, `created_at`, `body`, `handler`, `updated_at`, `published`, `created_by_id`, `lock_version`, `archived`, `deleted`, `version`, `type`) VALUES('default', 1, 'html', '2009-04-30 19:08:48', '<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n <head>\n <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />\n <title><%= page_title %></title>\n <%= yield :html_head %>\n </head>\n <body style=\"margin: 0; padding: 0; text-align: center;\">\n <%= cms_toolbar %>\n <div id=\"wrapper\" style=\"width: 700px; margin: 0 auto; text-align: left; padding: 30px\">\n Breadcrumbs: <%= render_breadcrumbs %>\n Main Menu: <%= render_menu %>\n <h1><%= @page_title %></h1>\n <p>BrowserCMS has been installed successfully.</p> \n\n <h2>Getting Started</h2>\n <p>To start building your site, you can either <%= link_to \"alter this template\", edit_cms_page_template_path(PageTemplate.find_by_file_name(\"default.html.erb\")) %> or <%= link_to \"create a new one\", new_cms_page_template_path %>. You will be prompted to login with the credentials provided during the install process. To change which template the pages use, you can click the \'Edit Properties\' button above, and choose a different template. After all pages in the site, use the new template, you can safely delete this one.</p>\n\n <%= container :main %>\n </div>\n </body>\n</html>\n', 'erb', '2009-04-30 19:08:48', 0, 1, 0, 0, 0, 1, 'PageTemplate')[0m
+  [4;35;1mPageTemplate::Version Load (0.2ms)[0m   [0mSELECT * FROM `dynamic_view_versions` WHERE (`dynamic_view_versions`.dynamic_view_id = NULL) [0m
+  [4;36;1mPageTemplate::Version Create (0.2ms)[0m   [0;1mINSERT INTO `dynamic_view_versions` (`name`, `updated_by_id`, `dynamic_view_id`, `format`, `created_at`, `body`, `handler`, `updated_at`, `published`, `created_by_id`, `archived`, `deleted`, `version`, `type`, `version_comment`) VALUES('default', 1, 1, 'html', '2009-04-30 19:08:48', '<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n <head>\n <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />\n <title><%= page_title %></title>\n <%= yield :html_head %>\n </head>\n <body style=\"margin: 0; padding: 0; text-align: center;\">\n <%= cms_toolbar %>\n <div id=\"wrapper\" style=\"width: 700px; margin: 0 auto; text-align: left; padding: 30px\">\n Breadcrumbs: <%= render_breadcrumbs %>\n Main Menu: <%= render_menu %>\n <h1><%= @page_title %></h1>\n <p>BrowserCMS has been installed successfully.</p> \n\n <h2>Getting Started</h2>\n <p>To start building your site, you can either <%= link_to \"alter this template\", edit_cms_page_template_path(PageTemplate.find_by_file_name(\"default.html.erb\")) %> or <%= link_to \"create a new one\", new_cms_page_template_path %>. You will be prompted to login with the credentials provided during the install process. To change which template the pages use, you can click the \'Edit Properties\' button above, and choose a different template. After all pages in the site, use the new template, you can safely delete this one.</p>\n\n <%= container :main %>\n </div>\n </body>\n</html>\n', 'erb', '2009-04-30 19:08:48', 0, 1, 0, 0, 1, NULL, 'Created')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM `pages` WHERE (`pages`.`id` = 1) AND (pages.deleted = 0) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `pages` WHERE (path = '/' and id != 1) AND (pages.deleted = 0) [0m
+  [4;35;1mConnector Load (0.2ms)[0m   [0mSELECT * FROM `connectors` WHERE (((`connectors`.`page_version` = 1) AND (`connectors`.page_id = 1)) AND (`connectors`.page_id = 1)) ORDER BY connectors.container, connectors.position[0m
+  [4;36;1mPage Update with optimistic locking (0.2ms)[0m   [0;1m UPDATE `pages`
+ SET `updated_at` = '2009-04-30 19:08:48', `version` = 2, `published` = 1, `lock_version` = 1
+ WHERE id = 1
+ AND `lock_version` = 0
+[0m
+  [4;35;1mPage::Version Create (0.2ms)[0m   [0mINSERT INTO `page_versions` (`name`, `updated_by_id`, `created_at`, `title`, `template_file_name`, `published`, `created_by_id`, `updated_at`, `page_id`, `language`, `archived`, `deleted`, `version`, `version_comment`, `path`, `description`, `keywords`, `cacheable`, `hidden`) VALUES('Home', 1, '2009-04-30 19:08:48', NULL, 'default.html.erb', 1, 1, '2009-04-30 19:08:48', 1, NULL, 0, 0, 2, 'Published', '/', NULL, NULL, 1, 0)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20081114172307')[0m
+Migrating to CreateEmailMessages (20090130171546)
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `email_messages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `sender` varchar(255), `recipients` text, `subject` text, `cc` text, `bcc` text, `body` text, `content_type` varchar(255), `delivered_at` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090130171546')[0m
+Migrating to CreateTasks (20090212164201)
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE `tasks` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `assigned_by_id` int(11), `assigned_to_id` int(11), `page_id` int(11), `comment` text, `due_date` date, `completed_at` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090212164201')[0m
+Migrating to CreatePageRoutes (20090410193133)
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `page_routes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `pattern` varchar(255), `page_id` int(11), `code` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090410193133')[0m
+Migrating to CreatePageRouteOptions (20090410193312)
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `page_route_options` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `page_route_id` int(11), `type` varchar(255), `name` varchar(255), `value` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090410193312')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mSHOW FIELDS FROM `attachment_versions`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `attachment_versions`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `attachment_versions`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `attachments`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `attachments`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `attachments`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `categories`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mdescribe `categories`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `categories`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `category_types`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `category_types`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW KEYS FROM `category_types`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mSHOW FIELDS FROM `connectors`[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mdescribe `connectors`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `connectors`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `content_type_groups`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `content_type_groups`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `content_type_groups`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `content_types`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `content_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `content_types`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `dynamic_view_versions`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `dynamic_view_versions`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `dynamic_view_versions`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `dynamic_views`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `dynamic_views`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `dynamic_views`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mSHOW FIELDS FROM `email_messages`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `email_messages`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `email_messages`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `file_block_versions`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `file_block_versions`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `file_block_versions`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `file_blocks`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `file_blocks`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `file_blocks`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `group_permissions`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `group_permissions`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `group_permissions`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `group_sections`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `group_sections`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `group_sections`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `group_type_permissions`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `group_type_permissions`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `group_type_permissions`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `group_types`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `group_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `group_types`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `groups`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `groups`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `html_block_versions`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `html_block_versions`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `html_block_versions`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `html_blocks`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `html_blocks`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `html_blocks`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `link_versions`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `link_versions`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `link_versions`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `links`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `links`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `links`[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mSHOW FIELDS FROM `page_route_options`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `page_route_options`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `page_route_options`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `page_routes`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `page_routes`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `page_routes`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `page_versions`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `page_versions`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `page_versions`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `pages`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `pages`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pages`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `permissions`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mdescribe `permissions`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `permissions`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `portlet_attributes`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `portlet_attributes`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `portlet_attributes`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `portlets`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mdescribe `portlets`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `portlets`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `redirects`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `redirects`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `redirects`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mSHOW FIELDS FROM `section_nodes`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `section_nodes`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `section_nodes`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `sections`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `sections`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `sections`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `sites`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `sites`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `taggings`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mdescribe `taggings`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `taggings`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `tags`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mdescribe `tags`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `tags`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mdescribe `tasks`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `tasks`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `user_group_memberships`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `user_group_memberships`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `user_group_memberships`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `users`[0m
