@@ -12,6 +12,7 @@ class RankThisPagePortlet < Portlet
   end
 
   def average_ranking(rankings)
+    return 0 unless rankings.size > 0
     total = 0.0
     rankings.each do |r|
       total = total + r.rank

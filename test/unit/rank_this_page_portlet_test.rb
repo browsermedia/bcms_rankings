@@ -43,4 +43,11 @@ class RankThisPagePortletTest < ActiveSupport::TestCase
     assert_not_nil  portlet.instance_variable_get(:@page_ranking), "Should create an empoty PageRanking for the form."
     assert_equal rankings, portlet.instance_variable_get(:@rankings), "Should load all the rankings for the form." 
   end
+
+  test "Calculate average with no rankings" do
+    portlet = RankThisPagePortlet.new
+
+    assert_equal 0, portlet.average_ranking([])
+
+  end
 end
