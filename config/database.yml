@@ -18,7 +18,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: rankings_module_development
+  database: bcms_rankings_development
   pool: 5
   username: root
   password:
@@ -31,7 +31,7 @@ test:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: rankings_module_test
+  database: bcms_rankings_test
   pool: 5
   username: root
   password:

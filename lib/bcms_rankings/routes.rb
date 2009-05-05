@@ -1,5 +1,5 @@
 module Cms::Routes
-  def routes_for_browser_cms_rankings_module
+  def routes_for_bcms_rankings
     page_rankings "/page_rankings",
       :controller => "page_rankings",
       :action => "create",

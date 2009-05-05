@@ -1,1 +1,1 @@
-require File.join(File.dirname(__FILE__), "..", "..", "lib", "browser_cms_rankings_module")
+require File.join(File.dirname(__FILE__), "..", "..", "lib", "bcms_rankings")
