@@ -1,4 +1,3 @@
-ActionController::Routing::Routes.draw do |map|
-  map.routes_for_bcms_rankings
-  map.routes_for_browser_cms
+BcmsRankings::Engine.routes.draw do
+  content_blocks :page_rankings
 end

@@ -1,11 +1,11 @@
-class HighestRankedPagesPortlet < Portlet
+class HighestRankedPagesPortlet < Cms::Portlet
     
   def render
     @pages =
-            Page.find(:all,
-              :select => 'pages.*, COUNT(page_rankings.id) AS rankings_count, AVG(page_rankings.rank) as avg_rank',
-              :joins  => 'INNER JOIN page_rankings ON page_rankings.page_id = pages.id',
-              :group  => 'pages.id',
+            Cms::Page.find(:all,
+              :select => "#{Cms::Page.table_name}.*, COUNT(#{BcmsRankings::PageRanking.table_name}.id) AS rankings_count, AVG(#{BcmsRankings::PageRanking.table_name}.rank) as avg_rank",
+              :joins  => "INNER JOIN #{BcmsRankings::PageRanking.table_name} ON #{BcmsRankings::PageRanking.table_name}.page_id = #{Cms::Page.table_name}.id",
+              :group  => "#{Cms::Page.table_name}.id",
               :limit => @portlet.number_to_show,
               :order => "avg_rank desc")
   end
