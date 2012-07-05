@@ -3,6 +3,8 @@ require File.join(File.dirname(__FILE__), '/../test_helper')
 module BcmsRankings
   class PageRankingsControllerTest < ActionController::TestCase
 
+    tests ::PageRankingsController
+    
     def setup
       
     end
@@ -15,7 +17,7 @@ module BcmsRankings
 
       ranks = PageRanking.all
 
-
+      
       assert_equal 1, ranks.size
       assert_equal page, ranks[0].page
       assert_equal 4, ranks[0].rank

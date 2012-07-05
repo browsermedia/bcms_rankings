@@ -35,6 +35,11 @@ Rake::TestTask.new(:test => 'app:test:prepare') do |t|
   t.pattern = 'test/**/*_test.rb'
   t.verbose = false
 end
-
+Rake::TestTask.new('test:functionals' => 'app:test:prepare') do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/functional/**/*_test.rb'
+  t.verbose = false
+end
 
 task :default => :test

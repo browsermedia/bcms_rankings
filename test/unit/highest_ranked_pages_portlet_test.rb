@@ -20,8 +20,8 @@ module BcmsRankings
 
       PageRanking.rank(page_a, 1)
       PageRanking.rank(page_a, 1)
-      PageRanking.rank(page_a, 1)
-      PageRanking.rank(page_b, 2)
+      PageRanking.rank(page_a, 2)
+      PageRanking.rank(page_b, 3)
       PageRanking.rank(page_b, 1)
       PageRanking.rank(page_c, 1)
 
@@ -34,10 +34,10 @@ module BcmsRankings
 
       pages = portlet.instance_variable_get(:@pages)
       assert_equal [page_b, page_a], pages
-      assert_equal "2", pages[0].rankings_count, "should include the total # of rankings"
-      assert_equal "3", pages[1].rankings_count
-      assert_equal 1.5, pages[0].avg_rank.to_f, "should include the average rank"
-      assert_equal 1, pages[1].avg_rank.to_f
+      assert_equal 2, pages[0].rankings_count, "should include the total # of rankings"
+      assert_equal 3, pages[1].rankings_count
+      assert_equal 2, pages[0].avg_rank.to_f, "should include the average rank"
+      assert_equal 1.33, pages[1].avg_rank.to_f.round(2)
     end
     
     private
